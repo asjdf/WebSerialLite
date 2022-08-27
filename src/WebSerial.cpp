@@ -1,5 +1,5 @@
-#include "WebSerial.h"
-#include "webserial_webpage.h"
+#include "WebSerialLite.h"
+#include "WebSerialWebPage.h"
 
 void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
   _server = server;
