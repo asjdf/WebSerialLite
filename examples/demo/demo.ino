@@ -15,7 +15,7 @@
   #include <AsyncTCP.h>
 #endif
 #include <ESPAsyncWebServer.h>
-#include <WebSerial.h>
+#include <WebSerialLite.h>
 
 AsyncWebServer server(80);
 
