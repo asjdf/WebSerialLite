@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+node_modules
+pnpm-lock.yaml
+frontend
