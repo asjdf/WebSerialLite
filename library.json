@@ -1,11 +1,11 @@
 {
-    "name": "WebSerial",
+    "name": "WebSerialLite",
     "keywords": "WebSerial, serial, monitor, ESP8266, ESP32, webpage, websocket, wireless",
     "description": "WebSerial is a webpage based Serial Monitor to log, monitor, or debug your code remotely.",
     "repository":
     {
       "type": "git",
-      "url": "https://github.com/asjdf/WebSerial.git"
+      "url": "https://github.com/asjdf/WebSerialLite.git"
     },
     "authors":
     [

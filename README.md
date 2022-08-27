@@ -1,4 +1,4 @@
-# WebSerial
+# WebSerialLite
 
 WebSerial is a Serial Monitor for ESP8266 & ESP32 Microcontrollers that can be accessed remotely via a web browser. Webpage is stored in program memory of the microcontroller.
 
