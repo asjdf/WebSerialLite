@@ -16,6 +16,7 @@ I'm sorry that the current version is already the Pro version. XD
 - Realtime logging
 - Any number of Serial Monitors can be opened on the browser
 - Uses Async Webserver for better performance
+- Light weight (<3k)
 
 ## Dependencies
 
