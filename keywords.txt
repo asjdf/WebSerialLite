@@ -1,5 +1,8 @@
-WebSerial	KEYWORD1
-begin		KEYWORD2
-print		KEYWORD2
-println		KEYWORD2
-msgCallback	KEYWORD2
+WebSerial	 KEYWORD1
+begin		 KEYWORD2
+print		 KEYWORD2
+println		 KEYWORD2
+onConnect	 KEYWORD2
+onDisconnect KEYWORD2
+onMessage    KEYWORD2
+onError      KEYWORD2

@@ -43,7 +43,7 @@ void setup() {
     // WebSerial is accessible at "<IP Address>/webserial" in browser
     WebSerial.begin(&server);
     /* Attach Message Callback */
-    WebSerial.msgCallback(recvMsg);
+    WebSerial.onMessage(recvMsg);
     server.begin();
 }
 

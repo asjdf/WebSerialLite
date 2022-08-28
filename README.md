@@ -17,6 +17,8 @@ I'm sorry that the current version is already the Pro version. XD
 - Any number of Serial Monitors can be opened on the browser
 - Uses Async Webserver for better performance
 - Light weight (<3k)
+- Timestamp
+- Event driven
 
 ## Dependencies
 
@@ -36,7 +38,7 @@ For ESP32:
 
 WebSerial is very similar to the default Serial Monitor Library of Arduino.
 
-Please see `Demo` examples for better understanding on how to setup WebSerial for your Project: Click Here
+Please see `Demo` examples for better understanding on how to setup WebSerial for your Project.
 
 WebSerial has 2 main functions:
 

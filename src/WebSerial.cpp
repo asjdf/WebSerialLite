@@ -19,20 +19,26 @@ void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
 #if defined(WEBSERIAL_DEBUG)
       DEBUG_WEB_SERIAL("Client connection received");
 #endif
+      if (_connCallback != NULL) _connCallback(client);
     } else if (type == WS_EVT_DISCONNECT) {
 #if defined(WEBSERIAL_DEBUG)
       DEBUG_WEB_SERIAL("Client disconnected");
 #endif
+      if (_disconnCallback != NULL) _disconnCallback(client);
     } else if (type == WS_EVT_DATA) {
 #if defined(WEBSERIAL_DEBUG)
       DEBUG_WEB_SERIAL("Received Websocket Data");
 #endif
-      if (_RecvFunc != NULL) {
-        _RecvFunc(data, len);
-      }
+      if (_recvMsgCallback != NULL) _recvMsgCallback(data, len);
+      if (_recvMsgCallbackPlus != NULL) _recvMsgCallbackPlus(client, data, len);
+    } else if (type == WS_EVT_ERROR) {
+#if defined(WEBSERIAL_DEBUG)
+      DEBUG_WEB_SERIAL("Client error");
+#endif
+      if (_errCallback != NULL)
+        _errCallback(client, *(uint16_t *)arg, (const char *)data, len);
     }
   });
-
   _server->addHandler(_ws);
 
 #if defined(WEBSERIAL_DEBUG)
@@ -40,50 +46,48 @@ void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
 #endif
 }
 
-void WebSerialClass::msgCallback(RecvMsgHandler _recv) { _RecvFunc = _recv; }
+void WebSerialClass::onConnect(ConnHandler callbackFunc) {
+  _connCallback = callbackFunc;
+}
+void WebSerialClass::onDisconnect(DisconnHandler callbackFunc) {
+  _disconnCallback = callbackFunc;
+}
+void WebSerialClass::onMessage(RecvMsgHandler callbackFunc) {
+  _recvMsgCallback = callbackFunc;
+}
+void WebSerialClass::onMessage(RecvMsgHandlerPlus callbackFunc) {
+  _recvMsgCallbackPlus = callbackFunc;
+}
+void WebSerialClass::onError(ErrHandler callbackFunc) {
+  _errCallback = callbackFunc;
+}
 
 // Print
 void WebSerialClass::print(String m) { _ws->textAll(m); }
-
 void WebSerialClass::print(const char *m) { _ws->textAll(m); }
-
 void WebSerialClass::print(char *m) { _ws->textAll(m); }
-
 void WebSerialClass::print(int m) { _ws->textAll(String(m)); }
-
 void WebSerialClass::print(uint8_t m) { _ws->textAll(String(m)); }
-
 void WebSerialClass::print(uint16_t m) { _ws->textAll(String(m)); }
-
 void WebSerialClass::print(uint32_t m) { _ws->textAll(String(m)); }
-
 void WebSerialClass::print(double m) { _ws->textAll(String(m)); }
-
 void WebSerialClass::print(float m) { _ws->textAll(String(m)); }
 
 // Print with New Line
-
 void WebSerialClass::println(String m) { _ws->textAll(m + "\n"); }
-
 void WebSerialClass::println(const char *m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(char *m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(int m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(uint8_t m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(uint16_t m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(uint32_t m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(float m) { _ws->textAll(String(m) + "\n"); }
-
 void WebSerialClass::println(double m) { _ws->textAll(String(m) + "\n"); }
 
 #if defined(WEBSERIAL_DEBUG)
 void WebSerialClass::DEBUG_WEB_SERIAL(const char *message) {
-  Serial.print("[WebSerial] ");Serial.println(message);
+  Serial.print("[WebSerial] ");
+  Serial.println(message);
 }
 #endif
 
