@@ -1,5 +1,5 @@
 /*
-  WebSerial Demo AP
+  WebSerialLite Demo AP
   ------
   This example code works for both ESP8266 & ESP32 Microcontrollers
   WebSerial is accessible at 192.168.4.1/webserial URL.

@@ -1,5 +1,5 @@
 /*
-  WebSerial Demo
+  WebSerialLite Demo
   ------
   This example code works for both ESP8266 & ESP32 Microcontrollers
   WebSerial is accessible at your ESP's <IPAddress>/webserial URL.
