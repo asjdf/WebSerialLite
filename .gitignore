@@ -32,6 +32,4 @@
 *.app
 
 node_modules
-pnpm-lock.yaml
-frontend
 .vscode

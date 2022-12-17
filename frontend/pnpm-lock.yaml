@@ -1,0 +1,20 @@
+lockfileVersion: 5.3
+
+specifiers:
+  '@gfx/zopfli': ^1.0.15
+
+dependencies:
+  '@gfx/zopfli': 1.0.15
+
+packages:
+
+  /@gfx/zopfli/1.0.15:
+    resolution: {integrity: sha512-7mBgpi7UD82fsff5ThQKet0uBTl4BYerQuc+/qA1ELTwWEiIedRTcD3JgiUu9wwZ2kytW8JOb165rSdAt8PfcQ==}
+    engines: {node: '>= 8'}
+    dependencies:
+      base64-js: 1.5.1
+    dev: false
+
+  /base64-js/1.5.1:
+    resolution: {integrity: sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA==}
+    dev: false

@@ -1,21 +1,29 @@
 {
-    "name": "WebSerialLite",
-    "keywords": "WebSerial, serial, monitor, ESP8266, ESP32, webpage, websocket, wireless",
-    "description": "WebSerial is a webpage based Serial Monitor to log, monitor, or debug your code remotely.",
-    "repository":
+  "name": "WebSerialLite",
+  "keywords": "WebSerial, serial, monitor, ESP8266, ESP32, webpage, websocket, wireless",
+  "description": "WebSerial is a webpage based Serial Monitor to log, monitor, or debug your code remotely.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/asjdf/WebSerialLite.git"
+  },
+  "authors": [
     {
-      "type": "git",
-      "url": "https://github.com/asjdf/WebSerialLite.git"
-    },
-    "authors":
-    [
-      {
-        "name": "HomeboyC",
-        "email": "homeboyc@foxmail.com",
-        "maintainer": true
-      }
-    ],
-    "version": "2.0.0",
-    "frameworks": "arduino",
-    "platforms": "espressif"
-  }
+      "name": "HomeboyC",
+      "email": "homeboyc@foxmail.com",
+      "maintainer": true
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "external-repo",
+      "version": "https://github.com/me-no-dev/ESPAsyncWebServer.git"
+    }
+  ],
+  "version": "2.0.0",
+  "frameworks": "arduino",
+  "platforms": [
+    "espressif8266",
+    "espressif32"
+  ],
+  "license": "GPL-3.0-or-later"
+}
