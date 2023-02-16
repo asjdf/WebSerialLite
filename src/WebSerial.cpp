@@ -11,7 +11,10 @@ void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
     request->send(response);
   });
 
-  _ws = new AsyncWebSocket("/webserialws");
+
+  String backendUrl = url;
+  backendUrl.concat("ws");
+  _ws = new AsyncWebSocket(backendUrl);
   _ws->onEvent([&](AsyncWebSocket *server, AsyncWebSocketClient *client,
                    AwsEventType type, void *arg, uint8_t *data,
                    size_t len) -> void {

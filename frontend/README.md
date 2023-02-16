@@ -11,9 +11,9 @@ You can modify and regenerate the page in three step. The execution of the follo
 ```shell
 cd .\frontend\
 pnpm i
-node .\finalize.mjs
+pnpm build
 ```
 
-The `finalize.mjs` will compress and html and generate a new `WebSerialWebPage.h` in `../src` floder automatically.
+The `finalize.js` will compress and html and generate a new `WebSerialWebPage.h` in `../src` floder automatically.
 
 Then you can rebuild your program, the new page ought be embedded in the firmware as expected.
