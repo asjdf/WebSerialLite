@@ -67,12 +67,16 @@ void WebSerialClass::onError(ErrHandler callbackFunc) {
 
 // Print
 size_t WebSerialClass::write(uint8_t m) {
-  _ws->textAll((const char *)&(m), 1);
+  if (_ws != NULL) {
+    _ws->textAll((const char *)&(m), 1);
+  }
   return(1);
 }
 
 size_t WebSerialClass::write(const uint8_t* buffer, size_t size) {
-  _ws->textAll((const char *)buffer, size);
+  if (_ws != NULL) {
+    _ws->textAll((const char *)buffer, size);
+  }
   return(size);
 }
 
