@@ -19,7 +19,7 @@
       "version": "https://github.com/me-no-dev/ESPAsyncWebServer.git"
     }
   ],
-  "version": "2.1.0",
+  "version": "2.2.0",
   "frameworks": "arduino",
   "platforms": [
     "espressif8266",
