@@ -33,7 +33,7 @@ typedef std::function<void(AsyncWebSocketClient *, uint16_t code,
 
 class WebSerialClass : public Print {
  public:
-  void begin(AsyncWebServer *server, const char *url = "/webserial");
+  void begin(AsyncWebServer *server, const char *url = "/webserial", const String &username = "", const String &password = "");
 
   void onConnect(ConnHandler callbackFunc);
   void onDisconnect(DisconnHandler callbackFunc);
@@ -54,6 +54,9 @@ class WebSerialClass : public Print {
   RecvMsgHandler _recvMsgCallback = NULL;
   RecvMsgHandlerPlus _recvMsgCallbackPlus = NULL;
   ErrHandler _errCallback = NULL;
+  String _username;
+  String _password;
+  bool _auth;
 
 #if defined(WEBSERIAL_DEBUG)
   void DEBUG_WEB_SERIAL(const char *message);
