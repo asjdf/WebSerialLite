@@ -83,9 +83,10 @@
         }
 
         .main {
+            padding-top: 3rem;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100dvh;
         }
@@ -97,9 +98,9 @@
             border-width: 0.5rem;
             border-radius: 1rem;
             background-color: #fff;
-            max-width: 45rem;
             width: calc(100% - 1rem);
             font-size: medium;
+            margin-top: 2.5rem;
         }
 
         .pannel button {
@@ -193,7 +194,7 @@
                     </svg>
                 </button>
             </div>
-            <textarea class="w-full rounded" title="record" id="record" cols="30" rows="10" disabled></textarea>
+            <textarea class="w-full rounded" title="record" id="record" cols="30" rows="40" disabled></textarea>
             <div class="flex w-full grid gap-2" id="terminal">
                 <input type="text" name="cmd" id="command-text" class="grow rounded" /><button
                     class="grid justify-items-end rounded shadow" id="command-button">
@@ -236,6 +237,7 @@
         websocket.onopen = onOpen;
         websocket.onclose = onClose;
         websocket.onmessage = onMessage;
+        websocket.onerror = onError;
     }
 
     function initButton() {
@@ -264,8 +266,13 @@
         document.getElementById("command-text").disabled = false;
     }
 
+    function onError() {
+        terminalWrite("[WebSerial] Error!\n");
+    }
+
     function onClose(event) {
         console.log("Connection closed");
+        terminalWrite("[WebSerial] Connection closed.\n");
         setTimeout(initWebSocket, 2000);
     }
 
