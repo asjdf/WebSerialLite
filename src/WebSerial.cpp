@@ -1,9 +1,16 @@
 #include "WebSerialLite.h"
 #include "WebSerialWebPage.h"
 
-void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
+void WebSerialClass::begin(AsyncWebServer *server, const char *url, const String &username, const String &password) {
   _server = server;
-  _server->on(url, HTTP_GET, [](AsyncWebServerRequest *request) {
+  _username = username;
+  _password = password;
+  _auth = !_username.isEmpty() && !_password.isEmpty();
+
+  _server->on(url, HTTP_GET, [this](AsyncWebServerRequest *request) {
+    if(_auth && !request->authenticate(_username.c_str(), _password.c_str())) {
+      return request->requestAuthentication();
+    }
     // Send Webpage
     AsyncWebServerResponse *response = request->beginResponse_P(
         200, "text/html", WEBSERIAL_HTML, WEBSERIAL_HTML_SIZE);
@@ -15,6 +22,9 @@ void WebSerialClass::begin(AsyncWebServer *server, const char *url) {
   String backendUrl = url;
   backendUrl.concat("ws");
   _ws = new AsyncWebSocket(backendUrl);
+  if(_auth) {
+    _ws->setAuthentication(_username.c_str(), _password.c_str());
+  }
   _ws->onEvent([&](AsyncWebSocket *server, AsyncWebSocketClient *client,
                    AwsEventType type, void *arg, uint8_t *data,
                    size_t len) -> void {
